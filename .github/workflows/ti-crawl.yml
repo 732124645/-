@@ -1,0 +1,75 @@
+name: TI Crawler Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      parts:
+        description: "Space-separated part numbers"
+        default: "OPA1612 LM2596 TPS54302 MSP430G2553 LM358 NE555 TL431 ADS1115"
+        required: true
+      download_pdfs:
+        description: "Also download datasheet PDFs"
+        type: boolean
+        default: true
+  push:
+    paths:
+      - ".github/workflows/ti-crawl.yml"
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Init DB
+        run: python ti_crawler.py init
+
+      - name: Seed parts
+        env:
+          PARTS: ${{ github.event.inputs.parts || 'OPA1612 LM2596 TPS54302 MSP430G2553 LM358 NE555 TL431 ADS1115' }}
+        run: python ti_crawler.py seed $PARTS
+
+      - name: Crawl product pages
+        run: python ti_crawler.py crawl --limit 100
+
+      - name: Stats
+        run: python ti_crawler.py stats
+
+      - name: Export CSV
+        run: python ti_crawler.py export ti_parts.csv
+
+      - name: Download datasheets
+        if: ${{ github.event.inputs.download_pdfs != 'false' }}
+        continue-on-error: true
+        run: python ti_crawler.py download-pdfs --limit 20
+
+      - name: Show CSV preview
+        if: always()
+        run: |
+          echo "===== ti_parts.csv ====="
+          head -c 4000 ti_parts.csv || true
+          echo
+          echo "===== file listing ====="
+          ls -la ti.db ti_parts.csv 2>/dev/null || true
+          ls -la datasheets/ 2>/dev/null || true
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ti-crawl-results
+          path: |
+            ti.db
+            ti_parts.csv
+            datasheets/
+          if-no-files-found: warn
+          retention-days: 14
