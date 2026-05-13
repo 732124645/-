@@ -45,8 +45,10 @@ PDF_DIR = Path("datasheets")
 LOG = logging.getLogger("ti_crawler")
 
 PRODUCT_URL = "https://www.ti.com/product/{part}"
-DATASHEET_URL = "https://www.ti.com/lit/ds/symlink/{part}.pdf"
-GENERIC_LIT_URL = "https://www.ti.com/lit/gpn/{part}"
+# TI's datasheet file names are lowercase. The /lit/gpn/<part> endpoint
+# follows redirects to the actual PDF and is case-insensitive.
+DATASHEET_URL = "https://www.ti.com/lit/ds/symlink/{part_lc}.pdf"
+GENERIC_LIT_URL = "https://www.ti.com/lit/gpn/{part_lc}"
 
 USER_AGENT = (
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
@@ -213,39 +215,39 @@ def parse_product_page(html: str) -> dict:
         if og and og.get("content"):
             out["description"] = og["content"].strip()
 
-    # 3. lifecycle: TI shows badges like "ACTIVE", "NRND", "OBSOLETE"
-    text = soup.get_text(" ", strip=True).upper()
-    for status in ("OBSOLETE", "NRND", "PREVIEW", "ACTIVE"):
-        if re.search(rf"\b{status}\b", text):
-            out["lifecycle"] = status
-            break
+    # 3. lifecycle: TI embeds it in a JS blob as marketingStatusDescription
+    m = re.search(r'marketingStatusDescription["\s:]+["\']?([A-Z][A-Z_ ]+)', html)
+    if m:
+        out["lifecycle"] = m.group(1).strip()
 
-    # 4. datasheet link — prefer ti.com/lit/ds/symlink/<part>.pdf style
+    # 4. datasheet link — prefer /lit/gpn/<part> which TI redirects to the PDF
     for a in soup.find_all("a", href=True):
         href = a["href"]
-        if "/lit/ds/" in href and href.lower().endswith(".pdf"):
+        if "/lit/gpn/" in href or ("/lit/ds/" in href and href.lower().endswith(".pdf")):
             out["datasheet_url"] = href if href.startswith("http") else f"https://www.ti.com{href}"
             break
 
-    # 5. parameters: scan tables for label/value rows
+    # 5. parameters from TI's custom web components
+    #    <ti-multicolumn-list-row>
+    #      <ti-multicolumn-list-cell><span>GBW (typ) (MHz)</span></ti-multicolumn-list-cell>
+    #      <ti-multicolumn-list-cell><span>40</span></ti-multicolumn-list-cell>
+    for row in soup.find_all("ti-multicolumn-list-row"):
+        cells = row.find_all("ti-multicolumn-list-cell")
+        if len(cells) >= 2:
+            k = _text(cells[0])
+            v = _text(cells[1])
+            if k and v and len(k) < 120 and len(v) < 400:
+                out["parameters"].setdefault(k, v)
+
+    # 6. fallback: classic HTML tables (some TI pages still use them)
     for table in soup.find_all("table"):
         for row in table.find_all("tr"):
             cells = row.find_all(["th", "td"])
             if len(cells) == 2:
                 k = _text(cells[0])
                 v = _text(cells[1])
-                if k and v and len(k) < 80 and len(v) < 400:
-                    out["parameters"][k] = v
-
-    # 6. <dl><dt><dd> spec lists
-    for dl in soup.find_all("dl"):
-        dts = dl.find_all("dt")
-        dds = dl.find_all("dd")
-        for dt, dd in zip(dts, dds):
-            k = _text(dt)
-            v = _text(dd)
-            if k and v and len(k) < 80 and len(v) < 400:
-                out["parameters"].setdefault(k, v)
+                if k and v and len(k) < 120 and len(v) < 400:
+                    out["parameters"].setdefault(k, v)
 
     return out
 
@@ -263,7 +265,7 @@ def crawl_one(client: httpx.Client, part: str) -> dict:
     parsed = parse_product_page(r.text)
     if not parsed.get("datasheet_url"):
         # fallback to known URL pattern; verified on download
-        parsed["datasheet_url"] = DATASHEET_URL.format(part=part)
+        parsed["datasheet_url"] = DATASHEET_URL.format(part_lc=part.lower())
     return parsed
 
 
@@ -362,7 +364,7 @@ def download_pdfs(limit: int, retry_errors: bool) -> None:
     with make_client() as client, closing(db_conn()) as conn:
         for i, row in enumerate(rows, 1):
             part = row["part_number"]
-            url = row["datasheet_url"] or DATASHEET_URL.format(part=part)
+            url = row["datasheet_url"] or DATASHEET_URL.format(part_lc=part.lower())
             target = PDF_DIR / f"{part}.pdf"
             try:
                 r = _get(client, url)
