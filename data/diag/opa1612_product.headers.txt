@@ -1,0 +1,19 @@
+HTTP/2 200 
+server: Apache
+strict-transport-security: max-age=31536000
+x-xss-protection: 1; mode=block
+referrer-policy: no-referrer-when-downgrade
+content-security-policy: frame-ancestors https://*.ti.com https://*.ti.com.cn https://*.tij.co.jp;
+x-content-type-options: nosniff
+cache-control: no-cache, no-store, max-age=0, must-revalidate
+pragma: no-cache
+expires: 0
+x-frame-options: SAMEORIGIN
+content-type: text/html;charset=UTF-8
+content-language: en-US
+date: Wed, 13 May 2026 16:51:08 GMT
+set-cookie: ti_geo=country=US|city=SANJOSE|continent=NA|tc_ip=68.220.61.211; path=/; domain=.ti.com; secure; SameSite=None
+set-cookie: ti_rid=158196b; path=/; domain=.ti.com; secure; SameSite=None
+set-cookie: ti_ua=Mozilla%2f5.0%20(X11%3b%20Linux%20x86_64)%20AppleWebKit%2f537.36%20(KHTML,%20like%20Gecko)%20Chrome%2f124.0%20Safari%2f537.36; path=/; domain=.ti.com; secure; SameSite=None
+set-cookie: ti_bm=Unknown%20Bot%20(5A7283ECD5454E3ED9D8D2C731CFEFB3)%3amonitor%3a%3aBrowser%20Impersonator%3a%3a; path=/; domain=.ti.com;Samesite=none;Secure
+

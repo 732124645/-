@@ -1,0 +1,9 @@
+part_number,name,description,category,lifecycle,datasheet_url,pdf_local_path,pdf_status,parameters_json
+OPA1612,OPA1612,"SoundPlus™ Audio Operational Amplifier with 1.1nV/√Hz Noise, Low THD and Precision",,ACTIVE,https://www.ti.com/lit/ds/symlink/OPA1612.pdf,,pending,{}
+LM2596,LM2596,"SIMPLE SWITCHER&reg; 4.5V to 40V, 3A Low Component Count Step-Down Regulator",,ACTIVE,https://www.ti.com/lit/ds/symlink/LM2596.pdf,,pending,{}
+TPS54302,TPS54302,"4.5-V to 28-V Input, 3-A Output, EMI Friendly Synchronous Step-Down Converter",,ACTIVE,https://www.ti.com/lit/ds/symlink/TPS54302.pdf,,pending,{}
+MSP430G2553,MSP430G2553,"16 MHz MCU with 16KB Flash, 512B SRAM, comparator, UART/SPI/I2C, timer",,ACTIVE,https://www.ti.com/lit/ds/symlink/MSP430G2553.pdf,,pending,{}
+LM358,LM358,"Dual, 30-V, 700-kHz operational amplifier",,ACTIVE,https://www.ti.com/lit/ds/symlink/LM358.pdf,,pending,{}
+NE555,NE555,Single Precision Timer,,ACTIVE,https://www.ti.com/lit/ds/symlink/NE555.pdf,,pending,{}
+TL431,TL431,Adjustable precision shunt regulator,,ACTIVE,https://www.ti.com/lit/ds/symlink/TL431.pdf,,pending,{}
+ADS1115,ADS1115,"16-bit, 860-SPS, 4-channel, delta-sigma ADC with PGA, oscillator, VREF, comparator and I2C",,ACTIVE,https://www.ti.com/lit/ds/symlink/ADS1115.pdf,,pending,{}

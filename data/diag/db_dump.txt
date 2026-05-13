@@ -1,0 +1,10 @@
+=== parts ===
+{'part_number': 'OPA1612', 'name': 'OPA1612', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 227}
+{'part_number': 'LM2596', 'name': 'LM2596', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 219}
+{'part_number': 'TPS54302', 'name': 'TPS54302', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 224}
+{'part_number': 'MSP430G2553', 'name': 'MSP430G2553', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 223}
+{'part_number': 'LM358', 'name': 'LM358', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 182}
+{'part_number': 'NE555', 'name': 'NE555', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 163}
+{'part_number': 'TL431', 'name': 'TL431', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 177}
+{'part_number': 'ADS1115', 'name': 'ADS1115', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 235}
+=== params ===
