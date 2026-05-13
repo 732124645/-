@@ -11,9 +11,9 @@ expires: 0
 x-frame-options: SAMEORIGIN
 content-type: text/html;charset=UTF-8
 content-language: en-US
-date: Wed, 13 May 2026 16:51:08 GMT
-set-cookie: ti_geo=country=US|city=SANJOSE|continent=NA|tc_ip=68.220.61.211; path=/; domain=.ti.com; secure; SameSite=None
-set-cookie: ti_rid=158196b; path=/; domain=.ti.com; secure; SameSite=None
+date: Wed, 13 May 2026 16:58:03 GMT
+set-cookie: ti_geo=country=US|city=CHICAGO|continent=NA|tc_ip=20.102.223.195; path=/; domain=.ti.com; secure; SameSite=None
+set-cookie: ti_rid=35b0986; path=/; domain=.ti.com; secure; SameSite=None
 set-cookie: ti_ua=Mozilla%2f5.0%20(X11%3b%20Linux%20x86_64)%20AppleWebKit%2f537.36%20(KHTML,%20like%20Gecko)%20Chrome%2f124.0%20Safari%2f537.36; path=/; domain=.ti.com; secure; SameSite=None
-set-cookie: ti_bm=Unknown%20Bot%20(5A7283ECD5454E3ED9D8D2C731CFEFB3)%3amonitor%3a%3aBrowser%20Impersonator%3a%3a; path=/; domain=.ti.com;Samesite=none;Secure
+set-cookie: ti_bm=; path=/; domain=.ti.com;Samesite=none;Secure
 

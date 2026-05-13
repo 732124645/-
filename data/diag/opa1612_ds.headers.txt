@@ -13,13 +13,13 @@ expires: Mon, 20 Apr 2026 22:51:29 GMT
 x-content-type-options: nosniff
 x-frame-options: SAMEORIGIN
 content-type: application/pdf
-date: Wed, 13 May 2026 16:51:09 GMT
-set-cookie: ti_geo=country=US|city=SANJOSE|continent=NA|tc_ip=68.220.61.211; path=/; domain=.ti.com; secure; SameSite=None
-set-cookie: ti_rid=1581a52; path=/; domain=.ti.com; secure; SameSite=None
+date: Wed, 13 May 2026 16:58:04 GMT
+set-cookie: ti_geo=country=US|city=CHICAGO|continent=NA|tc_ip=20.102.223.195; path=/; domain=.ti.com; secure; SameSite=None
+set-cookie: ti_rid=35b0b77; path=/; domain=.ti.com; secure; SameSite=None
 set-cookie: ti_ua=Mozilla%2f5.0%20(X11%3b%20Linux%20x86_64)%20AppleWebKit%2f537.36%20(KHTML,%20like%20Gecko)%20Chrome%2f124.0%20Safari%2f537.36; path=/; domain=.ti.com; secure; SameSite=None
-set-cookie: _ga=GA1.2.772568277.1778691069; expires=Thu, 13-May-2027 16:51:09 GMT; path=/; domain=.ti.com; secure; SameSite=None
-set-cookie: _ga_QHTW9T1XEP=GS2.1.s1778691069$g1$t1778691069$o1; expires=Thu, 13-May-2027 16:51:09 GMT; path=/; domain=.ti.com; secure; SameSite=None
-set-cookie: tiSessionID=lit9dd5176a04abfd1581a52; expires=Thu, 13-May-2027 16:51:09 GMT; path=/; domain=.ti.com; secure; SameSite=none
+set-cookie: _ga=GA1.2.452722872.1778691484; expires=Thu, 13-May-2027 16:58:04 GMT; path=/; domain=.ti.com; secure; SameSite=None
+set-cookie: _ga_QHTW9T1XEP=GS2.1.s1778691484$g1$t1778691484$o1; expires=Thu, 13-May-2027 16:58:04 GMT; path=/; domain=.ti.com; secure; SameSite=None
+set-cookie: tiSessionID=litbd1176a04ad9c35b0b77; expires=Thu, 13-May-2027 16:58:04 GMT; path=/; domain=.ti.com; secure; SameSite=none
 set-cookie: ti_ridh=expired; path=/; domain=ti.com; expires=Thu, 1-Aug-2019 06:14:04 GMT
-set-cookie: ti_bm=Unknown%20Bot%20(5A7283ECD5454E3ED9D8D2C731CFEFB3)%3amonitor%3a%3aBrowser%20Impersonator%3a%3a; path=/; domain=.ti.com;Samesite=none;Secure
+set-cookie: ti_bm=; path=/; domain=.ti.com;Samesite=none;Secure
 

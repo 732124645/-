@@ -1,10 +1,30 @@
 === parts ===
-{'part_number': 'OPA1612', 'name': 'OPA1612', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 227}
-{'part_number': 'LM2596', 'name': 'LM2596', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 219}
-{'part_number': 'TPS54302', 'name': 'TPS54302', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 224}
-{'part_number': 'MSP430G2553', 'name': 'MSP430G2553', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 223}
-{'part_number': 'LM358', 'name': 'LM358', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 182}
-{'part_number': 'NE555', 'name': 'NE555', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 163}
-{'part_number': 'TL431', 'name': 'TL431', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 177}
-{'part_number': 'ADS1115', 'name': 'ADS1115', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'error', 'pdf_error': 'not a pdf (status=404 type=text/html; charset=utf-8)', 'raw_len': 235}
+{'part_number': 'OPA1612', 'name': 'OPA1612', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'done', 'pdf_error': None, 'raw_len': 216}
+{'part_number': 'LM2596', 'name': 'LM2596', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'done', 'pdf_error': None, 'raw_len': 208}
+{'part_number': 'TPS54302', 'name': 'TPS54302', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'done', 'pdf_error': None, 'raw_len': 213}
+{'part_number': 'MSP430G2553', 'name': 'MSP430G2553', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'done', 'pdf_error': None, 'raw_len': 212}
+{'part_number': 'LM358', 'name': 'LM358', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'done', 'pdf_error': None, 'raw_len': 171}
+{'part_number': 'NE555', 'name': 'NE555', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'done', 'pdf_error': None, 'raw_len': 152}
+{'part_number': 'TL431', 'name': 'TL431', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'done', 'pdf_error': None, 'raw_len': 166}
+{'part_number': 'ADS1115', 'name': 'ADS1115', 'lifecycle': 'ACTIVE', 'crawl_status': 'done', 'crawl_error': None, 'pdf_status': 'done', 'pdf_error': None, 'raw_len': 224}
 === params ===
+{'part_number': 'ADS1115', 'param_name': 'Resolution (Bits)', 'param_value': '16'}
+{'part_number': 'ADS1115', 'param_name': 'Sample rate (max) (ksps)', 'param_value': '0.86'}
+{'part_number': 'ADS1115', 'param_name': 'Number of input channels', 'param_value': '4'}
+{'part_number': 'ADS1115', 'param_name': 'Interface type', 'param_value': 'I2C'}
+{'part_number': 'ADS1115', 'param_name': 'Architecture', 'param_value': 'Delta-Sigma'}
+{'part_number': 'ADS1115', 'param_name': 'Input type', 'param_value': 'Differential, Single-ended'}
+{'part_number': 'ADS1115', 'param_name': 'Multichannel configuration', 'param_value': 'Multiplexed'}
+{'part_number': 'ADS1115', 'param_name': 'Rating', 'param_value': 'Catalog'}
+{'part_number': 'ADS1115', 'param_name': 'Reference mode', 'param_value': 'Internal'}
+{'part_number': 'ADS1115', 'param_name': 'Input voltage range (max) (V)', 'param_value': '5.5'}
+{'part_number': 'ADS1115', 'param_name': 'Input voltage range (min) (V)', 'param_value': '0'}
+{'part_number': 'ADS1115', 'param_name': 'Features', 'param_value': 'Comparator, Oscillator, PGA'}
+{'part_number': 'ADS1115', 'param_name': 'Operating temperature range (°C)', 'param_value': '-40 to 125'}
+{'part_number': 'ADS1115', 'param_name': 'Power consumption (typ) (mW)', 'param_value': '0.3'}
+{'part_number': 'ADS1115', 'param_name': 'Analog supply voltage (min) (V)', 'param_value': '2'}
+{'part_number': 'ADS1115', 'param_name': 'Analog supply voltage (max) (V)', 'param_value': '5.5'}
+{'part_number': 'ADS1115', 'param_name': 'Digital supply (min) (V)', 'param_value': '2'}
+{'part_number': 'ADS1115', 'param_name': 'Digital supply (max) (V)', 'param_value': '5.5'}
+{'part_number': 'ADS1115', 'param_name': 'SOT-5X3 (DYN)', 'param_value': '10'}
+{'part_number': 'ADS1115', 'param_name': 'VSSOP (DGS)', 'param_value': '10'}
