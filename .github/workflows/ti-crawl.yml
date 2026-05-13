@@ -19,6 +19,8 @@ jobs:
   crawl:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -61,6 +63,34 @@ jobs:
           echo "===== file listing ====="
           ls -la ti.db ti_parts.csv 2>/dev/null || true
           ls -la datasheets/ 2>/dev/null || true
+
+      - name: Commit results back to branch
+        if: always()
+        run: |
+          set -e
+          mkdir -p data
+          [ -f ti_parts.csv ] && cp ti_parts.csv data/ti_parts.csv || true
+          {
+            echo "# TI Crawl Run"
+            echo
+            echo "- run: #${{ github.run_number }}"
+            echo "- commit: ${{ github.sha }}"
+            echo "- time: $(date -u +%FT%TZ)"
+            echo
+            echo "## stats"
+            echo '```'
+            python ti_crawler.py stats || true
+            echo '```'
+          } > data/run_log.md
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "no data changes"
+          else
+            git commit -m "Crawl results: run #${{ github.run_number }} [skip ci]"
+            git push
+          fi
 
       - name: Upload artifacts
         if: always()
