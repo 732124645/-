@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# data artifacts
+ti.db
+ti.db-wal
+ti.db-shm
+datasheets/
+*.csv
