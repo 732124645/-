@@ -64,12 +64,47 @@ jobs:
           ls -la ti.db ti_parts.csv 2>/dev/null || true
           ls -la datasheets/ 2>/dev/null || true
 
+      - name: Diagnostics — raw HTML + PDF response
+        if: always()
+        continue-on-error: true
+        run: |
+          mkdir -p data/diag
+          UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36'
+          # Fetch one product page raw, save HTML + headers
+          curl -sSL -A "$UA" -D data/diag/opa1612_product.headers.txt \
+               -o data/diag/opa1612_product.html \
+               -w "FINAL: status=%{http_code} size=%{size_download} url=%{url_effective}\n" \
+               "https://www.ti.com/product/OPA1612" > data/diag/opa1612_product.summary.txt 2>&1 || true
+          head -c 2000 data/diag/opa1612_product.html > data/diag/opa1612_product.head.txt || true
+          # Try PDF datasheet
+          curl -sSL -A "$UA" -D data/diag/opa1612_ds.headers.txt \
+               -o data/diag/opa1612_ds.bin \
+               -w "FINAL: status=%{http_code} size=%{size_download} type=%{content_type} url=%{url_effective}\n" \
+               "https://www.ti.com/lit/ds/symlink/opa1612.pdf" > data/diag/opa1612_ds.summary.txt 2>&1 || true
+          file data/diag/opa1612_ds.bin > data/diag/opa1612_ds.file.txt 2>&1 || true
+          head -c 500 data/diag/opa1612_ds.bin > data/diag/opa1612_ds.head.txt 2>&1 || true
+          # Per-part error report from SQLite
+          python -c "
+          import sqlite3
+          c = sqlite3.connect('ti.db')
+          c.row_factory = sqlite3.Row
+          print('=== parts ===')
+          for r in c.execute('SELECT part_number, name, lifecycle, crawl_status, crawl_error, pdf_status, pdf_error, length(raw_json) as raw_len FROM parts'):
+              print(dict(r))
+          print('=== params ===')
+          for r in c.execute('SELECT * FROM parameters LIMIT 20'):
+              print(dict(r))
+          " > data/diag/db_dump.txt 2>&1 || true
+          # Save the DB itself for offline inspection
+          cp ti.db data/diag/ti.db || true
+          # The CSV got blocked by gitignore last run — copy under data/
+          [ -f ti_parts.csv ] && cp ti_parts.csv data/ti_parts.csv || true
+          ls -la data/ data/diag/
+
       - name: Commit results back to branch
         if: always()
         run: |
           set -e
-          mkdir -p data
-          [ -f ti_parts.csv ] && cp ti_parts.csv data/ti_parts.csv || true
           {
             echo "# TI Crawl Run"
             echo
@@ -84,11 +119,12 @@ jobs:
           } > data/run_log.md
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/
+          # Force-add to bypass .gitignore *.csv rule
+          git add -f data/
           if git diff --staged --quiet; then
             echo "no data changes"
           else
-            git commit -m "Crawl results: run #${{ github.run_number }} [skip ci]"
+            git commit -m "Crawl results + diagnostics: run #${{ github.run_number }} [skip ci]"
             git push
           fi
 
